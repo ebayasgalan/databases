@@ -1,7 +1,7 @@
 var Rooms = {
 
 
-  _data: new Set,
+  _data: new Set, // we need to change it
 
   selected: 'lobby',
 

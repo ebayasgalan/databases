@@ -1,7 +1,7 @@
 var Friends = {
 
 
-  _data: new Set,
+  _data: new Set, // we need to change it
 
   items: function() {
     return _.chain([...Friends._data]);

@@ -1,7 +1,8 @@
+
 var Messages = {
 
 
-  _data: {},
+  _data: module.exports.connection, // we need to change it
 
   items: function() {
     return _.chain(Object.values(Messages._data)).sortBy('createdAt');
