@@ -1,17 +1,18 @@
 var db = require('../db');
 
 module.exports = {
-  getAll: function () {
-    db.query('SELECT message FROM messages', function (err, rows, fields) {
-      if (err) { throw err; }
-
-      console.log('The query result is: ', rows[0]);
-      return rows[0];
+  getAll: function (callback) {
+    var queryStr = 'select messages.id, messages.message users.user rooms.room_id from messages \
+                    left outer join users on (messages.user_id = users.id) AND (messages.room_id = users.id) order by messages.id desc';
+    db.query(queryStr, function(err, results) {
+      callback(results);
     });
-    console.log('hello from getAll func');
-    // db.getCollection('SELECT * FROM messages');
-  }, // a function which produces all the messages
-  create: function () {} // a function which can be used to insert a message into the database
+  },
+  create: function (params, callback) {
+    var queryStr = 'insert into messages(text, user_id, room_id) \
+    values (?, (select id from users where username = ? limit 1), (select id from rooms where room = ? limit 1)';
+    db.query(queryStr, params, function(err, results) {
+      callback(results);
+    });
+  }
 };
-
-module.exports.getAll();

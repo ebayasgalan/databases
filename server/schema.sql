@@ -37,7 +37,7 @@ CREATE TABLE rooms (
 
 CREATE TABLE users (
   id INT NOT NULL AUTO_INCREMENT,
-  name VARCHAR(50),
+  username VARCHAR(50) NOT NULL,
   PRIMARY KEY (id)
 );
 
@@ -51,9 +51,9 @@ CREATE TABLE messages (
   message VARCHAR(255),
   room_id INT NOT NULL,
   user_id INT NOT NULL,
-  PRIMARY KEY (id),
-  FOREIGN KEY (room_id) REFERENCES rooms (id),
-  FOREIGN KEY (user_id) REFERENCES users (id)
+  PRIMARY KEY (id)
+  -- FOREIGN KEY (room_id) REFERENCES rooms (id),
+  -- FOREIGN KEY (user_id) REFERENCES users (id)
 );
 
 -- ---
