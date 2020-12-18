@@ -1,6 +1,9 @@
 var mysql = require('mysql');
 var Sequelize = require('sequelize');
-var orm = new Sequelize('chat', 'root', 'password');
+const orm = new Sequelize('chat', 'root', 'password', {
+  host: 'localhost3000',
+  dialect: 'mysql'
+});
 
 var User = orm.define('User', {
   username: Sequelize.STRING
