@@ -2,14 +2,15 @@ var models = require('../models');
 
 module.exports = {
   get: function (req, res) {
-    models.users.getAll(function(err, results) {
-      res.json(results);
-    });
+    UserfindAll()
+      .complete(function(err, results) {
+        res.json(results);
+      });
   },
   post: function (req, res) {
-    var params = [req.body[username]];
-    models.users.create(params, function(err, results) {
-      res.json(results);
-    });
+    User.create({username: req.body[username]})
+      .complete(function(err, user) {
+        res.sendStatus(201);
+      });
   }
 };
